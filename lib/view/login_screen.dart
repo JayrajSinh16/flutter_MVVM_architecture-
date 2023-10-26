@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_archi/resources/components/round_button.dart';
 import 'package:mvvm_archi/utils/routes/route_name.dart';
 import 'package:mvvm_archi/utils/utils.dart';
+import 'package:mvvm_archi/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -29,7 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -80,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             RoundButton(
               title: "Login",
+              loading: authViewModel.loading,
               onPress: () {
                 if(_editingController.text.isEmpty){
                   Utils.flushBarErrorMessage("PLease Enter Email", context);
@@ -91,6 +97,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Utils.flushBarErrorMessage("Too short Password", context);
                 }
                 else{
+                  Map data = {
+                    'email': _editingController.text.toString(),
+                    'password': _passwordController.text.toString(),
+                  };
+                  authViewModel.loginApi(data,context);
                   Utils.flushBarErrorMessage("Hit API", context);
                 }
               },
