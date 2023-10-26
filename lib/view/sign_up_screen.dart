@@ -104,10 +104,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 } else if (_passwordController.text.length < 6) {
                   Utils.flushBarErrorMessage("Too short Password", context);
                 } else {
+
                   Map data = {
-                    'email': _editingController.text.toString(),
-                    'password': _passwordController.text.toString(),
+                    'email': "eve.holt@reqres.in",
+                    'password': "pistol",
                   };
+
+                  // Map data = {
+                  //   'email': _editingController.text.toString(),
+                  //   'password': _passwordController.text.toString(),
+                  // };
+                  
                   authViewModel.signUpApi(data, context);
                   Utils.flushBarErrorMessage("Hit API", context);
                 }

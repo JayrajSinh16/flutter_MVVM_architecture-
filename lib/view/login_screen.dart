@@ -99,15 +99,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   Utils.flushBarErrorMessage("PLease Enter Email", context);
                 } else if (_passwordController.text.isEmpty) {
                   Utils.flushBarErrorMessage("PLease Enter Password", context);
-                } else if (_passwordController.text.length < 6) {
+                } else if (_passwordController.text.length < 4) {
                   Utils.flushBarErrorMessage("Too short Password", context);
                 } else {
+
+                  // Map data = {
+                  //   'email': _editingController.text.toString(),
+                  //   'password': _passwordController.text.toString(),
+                  // };
                   Map data = {
-                    'email': _editingController.text.toString(),
-                    'password': _passwordController.text.toString(),
+                    'email': "eve.holt@reqres.in",
+                    'password':"cityslicka",
                   };
+
                   authViewModel.loginApi(data, context);
                   Utils.flushBarErrorMessage("Hit API", context);
+
                 }
               },
             ),

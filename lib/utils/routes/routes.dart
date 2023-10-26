@@ -3,6 +3,7 @@ import 'package:mvvm_archi/utils/routes/route_name.dart';
 import 'package:mvvm_archi/view/home_screen.dart';
 import 'package:mvvm_archi/view/login_screen.dart';
 import 'package:mvvm_archi/view/sign_up_screen.dart';
+import 'package:mvvm_archi/view/splach_screen.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings){
@@ -17,6 +18,10 @@ class Routes {
 
       case RouteName.signUp : 
         return MaterialPageRoute(builder: (_) => const SignUpScreen(),);
+
+
+      case RouteName.splashScreen : 
+        return MaterialPageRoute(builder: (_) => const SplashScreen(),);
 
       default:
         return MaterialPageRoute(builder: (_) {

@@ -3,6 +3,7 @@ import 'package:mvvm_archi/utils/routes/route_name.dart';
 import 'package:mvvm_archi/utils/routes/routes.dart';
 import 'package:mvvm_archi/view/login_screen.dart';
 import 'package:mvvm_archi/view_model/auth_view_model.dart';
+import 'package:mvvm_archi/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -20,10 +21,14 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(
         create: (context) => AuthViewModel(),
       ),
+      ChangeNotifierProvider(
+        create: (context) => UserViewModel(),
+      ),
     ],
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'IRON MAN',
-      initialRoute: RouteName.login,
+      initialRoute: RouteName.splashScreen,
       onGenerateRoute: Routes.generateRoute,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

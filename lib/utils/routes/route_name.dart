@@ -6,4 +6,7 @@ class RouteName {
   
   static const String signUp = 'signUp_screen';
 
+
+  static const String splashScreen = 'splash_screen';
+
 }
