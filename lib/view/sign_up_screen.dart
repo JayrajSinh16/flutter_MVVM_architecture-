@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_archi/resources/components/round_button.dart';
 import 'package:mvvm_archi/utils/routes/route_name.dart';
 import 'package:mvvm_archi/utils/utils.dart';
-import 'package:mvvm_archi/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../view_model/auth_view_model.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  
   final TextEditingController _editingController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -36,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Screen"),
+        title: const Text("SignUp Screen"),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -92,8 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 50,
             ),
             RoundButton(
-              title: "Login",
-              loading: authViewModel.loading,
+              title: "SignUp",
+              loading: authViewModel.signUpLoading,
               onPress: () {
                 if (_editingController.text.isEmpty) {
                   Utils.flushBarErrorMessage("PLease Enter Email", context);
@@ -106,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     'email': _editingController.text.toString(),
                     'password': _passwordController.text.toString(),
                   };
-                  authViewModel.loginApi(data, context);
+                  authViewModel.signUpApi(data, context);
                   Utils.flushBarErrorMessage("Hit API", context);
                 }
               },
@@ -116,9 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, RouteName.signUp);
+                Navigator.pushNamed(context, RouteName.login);
               },
-              child: const Text("Don't Have an Account ? SignUp"),
+              child: const Text("Already Have an Accout ? Login"),
             )
           ],
         ),
